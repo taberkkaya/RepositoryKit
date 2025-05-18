@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageIcon>icon.jpg</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LISENCE.txt</PackageLicenseFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>RepositoryKit</PackageId>
+    <Title>RepositoryKit</Title>
+    <Authors>Ataberk Kaya</Authors>
+    <Company>ataberk.dev</Company>
+    <Description>Lightweight, generic repository implementation for Entity Framework Core.  
+Designed for personal projects with clarity and extensibility in mind.</Description>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/taberkkaya/RepositoryKit</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/taberkkaya/RepositoryKit</PackageProjectUrl>
+    <Version>2.0.0</Version>
+    <AssemblyVersion>2.0.0</AssemblyVersion>
+    <FileVersion>2.0.0</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\Users\ataberk\Desktop\icon.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\LISENCE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+  </ItemGroup>
+
+</Project>
