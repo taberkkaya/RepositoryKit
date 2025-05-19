@@ -67,7 +67,7 @@ public interface IProductRepository : IRepository<Product>
 }
 ```
 
-> 2.  Then, implement this interface with a concrete repository class, inheriting from the generic Repository<T, TContext>:
+> 2.  Then, implement this interface with a concrete repository class, inheriting from the generic `Repository<T, TContext>`:
 
 ```csharp
 using RepositoryKit
