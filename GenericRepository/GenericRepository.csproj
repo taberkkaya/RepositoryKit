@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <PackageIcon>icon.jpg</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageLicenseFile>LISENCE.txt</PackageLicenseFile>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>RepositoryKit</PackageId>
     <Title>RepositoryKit</Title>
@@ -17,7 +17,7 @@ Designed for personal projects with clarity and extensibility in mind.</Descript
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/taberkkaya/RepositoryKit</RepositoryUrl>
     <PackageProjectUrl>https://github.com/taberkkaya/RepositoryKit</PackageProjectUrl>
-    <Version>2.0.1</Version>
+    <Version>2.0.3</Version>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <FileVersion>2.0.0</FileVersion>
   </PropertyGroup>
@@ -27,7 +27,7 @@ Designed for personal projects with clarity and extensibility in mind.</Descript
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="..\LISENCE.txt">
+    <None Include="..\LICENSE.txt">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
