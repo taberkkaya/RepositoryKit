@@ -33,7 +33,7 @@
 
 | Technology                                                                | Purpose                                 |
 | ------------------------------------------------------------------------- | --------------------------------------- |
-| [.NET 8](https://dotnet.microsoft.com/)                                   | Core runtime                            |
+| [.NET 9](https://dotnet.microsoft.com/)                                   | Core runtime                            |
 | [Entity Framework Core](https://docs.microsoft.com/ef/core/)              | ORM support                             |
 | [Repository Pattern](https://martinfowler.com/eaaCatalog/repository.html) | Decouples domain logic from data access |
 | [Unit of Work](https://martinfowler.com/eaaCatalog/unitOfWork.html)       | Efficient transaction management        |

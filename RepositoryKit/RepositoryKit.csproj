@@ -17,9 +17,9 @@ Designed for personal projects with clarity and extensibility in mind.</Descript
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/taberkkaya/RepositoryKit</RepositoryUrl>
     <PackageProjectUrl>https://github.com/taberkkaya/RepositoryKit</PackageProjectUrl>
-    <Version>2.0.3</Version>
-    <AssemblyVersion>2.0.0</AssemblyVersion>
-    <FileVersion>2.0.0</FileVersion>
+    <Version>2.0.9</Version>
+    <AssemblyVersion>2.0.9</AssemblyVersion>
+    <FileVersion>2.0.9</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
