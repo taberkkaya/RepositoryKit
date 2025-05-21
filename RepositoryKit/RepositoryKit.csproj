@@ -4,26 +4,26 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PackageIcon>icon.jpg</PackageIcon>
+    <PackageIcon>logo64x64.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>RepositoryKit</PackageId>
     <Title>RepositoryKit</Title>
-    <Authors>Ataberk Kaya</Authors>
+    <Authors>ataberk</Authors>
     <Company>ataberk.dev</Company>
     <Description>Lightweight, generic repository implementation for Entity Framework Core.  
 Designed for personal projects with clarity and extensibility in mind.</Description>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/taberkkaya/RepositoryKit</RepositoryUrl>
     <PackageProjectUrl>https://github.com/taberkkaya/RepositoryKit</PackageProjectUrl>
-    <Version>2.0.9</Version>
+    <Version>2.1.0</Version>
     <AssemblyVersion>2.0.9</AssemblyVersion>
     <FileVersion>2.0.9</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\Users\ataberk\Desktop\icon.jpg">
+    <None Include="..\assets\logo64x64.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

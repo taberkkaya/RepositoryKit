@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="icon.jpg" alt="RepositoryKit Logo" width="200"/>
+  <img src="./assets/icon.jpg" alt="RepositoryKit Logo" width="200"/>
 </p>
 
 <h1 align="center">RepositoryKit</h1>
