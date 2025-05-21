@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace GenericRepository;
+namespace RepositoryKit;
 
 /// <summary>
 /// Generic repository interface defining common data access methods for entities.

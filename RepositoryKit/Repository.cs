@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace GenericRepository;
+namespace RepositoryKit;
 
 /// <summary>
 /// Generic repository implementation using Entity Framework Core DbContext.

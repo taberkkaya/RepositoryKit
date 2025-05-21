@@ -1,4 +1,4 @@
-﻿namespace GenericRepository;
+﻿namespace RepositoryKit;
 
 /// <summary>
 /// Represents a unit of work that manages database transaction scope.
