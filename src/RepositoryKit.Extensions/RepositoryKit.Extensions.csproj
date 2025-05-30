@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>RepositoryKit.Extensions</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>ataberk</Authors>
+    <Company>ataberk</Company>
+    <Description>Extension methods for RepositoryKit.Core (Paging, Sorting, etc.)</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/taberkkaya/RepositoryKit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/taberkkaya/RepositoryKit.git</RepositoryUrl>
+    <PackageTags>repository, extensions, paging, sorting</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <PackageIcon>logo-64x64.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\assets\logo-64x64.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RepositoryKit.Core\RepositoryKit.Core.csproj" />
+  </ItemGroup>
+</Project>

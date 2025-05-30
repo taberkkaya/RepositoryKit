@@ -1,0 +1,6 @@
+@RepositoryKit.Sample_HostAddress = http://localhost:5181
+
+GET {{RepositoryKit.Sample_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
