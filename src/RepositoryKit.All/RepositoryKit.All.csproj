@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>RepositoryKit</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>ataberk</Authors>
+    <Company>ataberk</Company>
+    <Product>RepositoryKit</Product>
+    <PackageProjectUrl>https://github.com/taberkkaya/RepositoryKit</PackageProjectUrl>
+    <PackageIcon>logo-64x64.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/taberkkaya/RepositoryKit</RepositoryUrl>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\assets\logo-64x64.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+	
+<ItemGroup>
+  <PackageReference Include="RepositoryKit.Core" Version="0.1.0" />
+  <PackageReference Include="RepositoryKit.EntityFramework" Version="0.1.0" />
+  <PackageReference Include="RepositoryKit.MongoDB" Version="0.1.0" />
+  <PackageReference Include="RepositoryKit.Extensions" Version="0.1.0" />
+</ItemGroup>
+</Project>
