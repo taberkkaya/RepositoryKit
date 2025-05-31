@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>RepositoryKit.Extensions</id>
+    <version>9.0.0</version>
+    <authors>ataberk</authors>
+    <owners>ataberk</owners>
+    <license type="file">LICENSE.txt</license>
+    <projectUrl>https://github.com/taberkkaya/RepositoryKit</projectUrl>
+    <icon>logo-64x64.png</icon>
+    <readme>README.md</readme>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>LINQ helper extensions for RepositoryKit. Adds support for Paginate, OrderByField, Chunk, and ForEach operations on IQueryable and IEnumerable.</description>
+    <releaseNotes>Initial stable version with LINQ-focused helper methods compatible with .NET 9.</releaseNotes>
+    <tags>repository linq extensions dotnet paginate orderby chunk foreach</tags>
+    <dependencies>
+      <dependency id="System.Linq" version="4.3.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="logo-64x64.png" target="logo-64x64.png" />
+    <file src="LICENSE.txt" target="LICENSE.txt" />
+    <file src="README.md" target="README.md" />
+  </files>
+</package>

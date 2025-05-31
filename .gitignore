@@ -1,0 +1,47 @@
+# Build results
+bin/
+obj/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+*.nuspec.cache
+*.nuspec.tmp
+
+# Test results
+TestResults/
+
+# User-specific files
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Auto-generated folders
+nupkgs/
+
+# Rider/JetBrains IDE
+.idea/
+
+# Logs
+*.log
+
+# Mac/Linux system files
+.DS_Store
+Thumbs.db
+
+# dotenv
+.env
+.env.*
+
+# Visual Studio
+*.VC.db
+.vs/
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# Local NuGet config
+nuget.config

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>RepositoryKit</id>
+    <version>9.0.0</version>
+    <authors>ataberk</authors>
+    <owners>ataberk</owners>
+    <license type="file">LICENSE.txt</license>
+    <projectUrl>https://github.com/taberkkaya/RepositoryKit</projectUrl>
+    <icon>logo-64x64.png</icon>
+    <readme>README.md</readme>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Umbrella package for RepositoryKit - a modular repository pattern infrastructure that supports EF Core, MongoDB and clean LINQ extensions.</description>
+    <releaseNotes>Unified release for RepositoryKit packages under .NET 9.0.0 compatibility.</releaseNotes>
+    <tags>repository umbrella efcore mongodb linq dotnet modular</tags>
+    <dependencies>
+      <dependency id="RepositoryKit.Core" version="9.0.0" />
+      <dependency id="RepositoryKit.EntityFramework" version="9.0.0" />
+      <dependency id="RepositoryKit.MongoDB" version="9.0.0" />
+      <dependency id="RepositoryKit.Extensions" version="9.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="logo-64x64.png" target="logo-64x64.png" />
+    <file src="LICENSE.txt" target="LICENSE.txt" />
+    <file src="README.md" target="README.md" />
+  </files>
+</package>
