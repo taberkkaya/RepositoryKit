@@ -4,6 +4,23 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>RepositoryKit.MongoDB</PackageId>
+    <Title>RepositoryKit.MongoDB</Title>
+    <Version>9.0.1</Version>
+    <Authors>ataberk</Authors>
+    <Company>ataberk</Company>
+    <Product>RepositoryKit.MongoDB</Product>
+    <Description>MongoDB implementation of RepositoryKit. Implements IRepository, IRepositoryQuery and IRepositoryBulk using MongoClient and IMongoCollection.</Description>
+    <PackageProjectUrl>https://github.com/taberkkaya/RepositoryKit</PackageProjectUrl>
+    <PackageIcon>logo-64x64.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/taberkkaya/RepositoryKit</RepositoryUrl>
+    <PackageTags>repository mongodb abstraction dotnet bson nosql</PackageTags>
+    <PackageReleaseNotes>Initial stable version for MongoDB repositories compatible with .NET 9.</PackageReleaseNotes>
+    <AssemblyVersion>9.0.1</AssemblyVersion>
+    <FileVersion>9.0.1</FileVersion>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +29,21 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RepositoryKit.Core\RepositoryKit.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="logo-64x64.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

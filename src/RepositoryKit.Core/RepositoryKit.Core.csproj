@@ -4,6 +4,38 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>RepositoryKit.Core</PackageId>
+    <Title>RepositoryKit.Core</Title>
+    <Version>9.0.1</Version>
+    <Authors>ataberk</Authors>
+    <Company>ataberk</Company>
+    <Product>RepositoryKit.Core</Product>
+    <Description>Core abstractions for RepositoryKit, including IReadRepository, IWriteRepository, IRepositoryQuery and IRepositoryBulk interfaces.</Description>
+    <PackageProjectUrl>https://github.com/taberkkaya/RepositoryKit</PackageProjectUrl>
+    <PackageIcon>logo-64x64.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/taberkkaya/RepositoryKit</RepositoryUrl>
+    <PackageTags>repository abstraction interfaces core dotnet clean-architecture</PackageTags>
+    <PackageReleaseNotes>Initial stable version aligned with .NET 9. Provides unified repository contracts for any data source.</PackageReleaseNotes>
+    <AssemblyVersion>9.0.1</AssemblyVersion>
+    <FileVersion>9.0.1</FileVersion>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="logo-64x64.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

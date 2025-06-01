@@ -4,6 +4,23 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>RepositoryKit.EntityFramework</PackageId>
+    <Title>RepositoryKit.EntityFramework</Title>
+    <Version>9.0.1</Version>
+    <AssemblyVersion>9.0.1</AssemblyVersion>
+    <FileVersion>9.0.1</FileVersion>
+    <Description>Entity Framework Core implementation of RepositoryKit. Implements IRepository, IRepositoryQuery and IRepositoryBulk using DbContext and DbSet.</Description>
+    <PackageReleaseNotes>Initial stable version for EF Core repositories using .NET 9 compatible structure.</PackageReleaseNotes>
+    <PackageTags>repository efcore dbcontext abstraction dotnet</PackageTags>
+    <RepositoryUrl>https://github.com/taberkkaya/RepositoryKit</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/taberkkaya/RepositoryKit</PackageProjectUrl>
+    <PackageIcon>logo-64x64.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Authors>ataberk</Authors>
+    <Company>ataberk</Company>
+    <Product>RepositoryKit.EntityFramework</Product>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +29,21 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RepositoryKit.Core\RepositoryKit.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="logo-64x64.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
