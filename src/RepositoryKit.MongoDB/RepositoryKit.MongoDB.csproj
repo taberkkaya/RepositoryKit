@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>RepositoryKit.MongoDB</PackageId>
     <Title>RepositoryKit.MongoDB</Title>
-    <Version>9.0.1</Version>
+    <Version>9.0.2</Version>
     <Authors>ataberk</Authors>
     <Company>ataberk</Company>
     <Product>RepositoryKit.MongoDB</Product>
@@ -18,8 +18,8 @@
     <RepositoryUrl>https://github.com/taberkkaya/RepositoryKit</RepositoryUrl>
     <PackageTags>repository mongodb abstraction dotnet bson nosql</PackageTags>
     <PackageReleaseNotes>Initial stable version for MongoDB repositories compatible with .NET 9.</PackageReleaseNotes>
-    <AssemblyVersion>9.0.1</AssemblyVersion>
-    <FileVersion>9.0.1</FileVersion>
+    <AssemblyVersion>9.0.2</AssemblyVersion>
+    <FileVersion>9.0.2</FileVersion>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
