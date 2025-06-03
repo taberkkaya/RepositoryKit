@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="logo-64x64.png" width="128" alt="RepositoryKit logo" />
+  <img src="assets/logo-64x64.png" width="128" alt="RepositoryKit logo" />
   <h1>RepositoryKit</h1>
   <p>
     <strong>Provider-agnostic, production-ready Repository & UnitOfWork infrastructure for modern .NET.</strong><br/>
