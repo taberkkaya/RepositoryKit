@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\RepositoryKit.Extensions\RepositoryKit.Extensions.csproj" />
     <ProjectReference Include="..\..\src\RepositoryKit.MongoDB\RepositoryKit.MongoDB.csproj" />
   </ItemGroup>
 

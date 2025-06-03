@@ -1,14 +1,28 @@
-// IRepository.cs
 namespace RepositoryKit.Core.Interfaces;
 
+using System;
+using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
+
 /// <summary>
-/// Defines generic CRUD operations for entities.
+/// Provides CRUD operations for the specified entity type.
 /// </summary>
-public interface IRepository<T, TKey> where T : class
+/// <typeparam name="TEntity">Entity type</typeparam>
+public interface IRepository<TEntity> : IReadOnlyRepository<TEntity> where TEntity : class
 {
-    Task<T?> GetByIdAsync(TKey id, CancellationToken cancellationToken = default);
-    Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
-    Task AddAsync(T entity, CancellationToken cancellationToken = default);
-    Task UpdateAsync(T entity, CancellationToken cancellationToken = default);
-    Task DeleteAsync(T entity, CancellationToken cancellationToken = default);
+    /// <summary>
+    /// Asynchronously adds a new entity.
+    /// </summary>
+    Task AddAsync(TEntity entity, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Asynchronously updates an existing entity.
+    /// </summary>
+    Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Asynchronously deletes an entity.
+    /// </summary>
+    Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default);
 }

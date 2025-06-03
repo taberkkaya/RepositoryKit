@@ -3,99 +3,79 @@
 
 # RepositoryKit
 
-**Modular and Testable Repository Pattern Infrastructure for .NET 9+**
+**Unified Repository and UnitOfWork Abstractions for Modern .NET**
 
 </div>
 
 ---
 
-## 🧭 Overview
+## 🚀 What is RepositoryKit?
 
-**RepositoryKit** is a flexible, provider-agnostic repository pattern implementation. Designed for modern .NET 9+ projects, it encourages clean separation of concerns while supporting MongoDB, Entity Framework, and any other data provider.
+RepositoryKit is a **modular, provider-agnostic infrastructure library**  
+that gives you clean, consistent repository and unit-of-work patterns for .NET projects.
+
+With a single abstraction layer, you can swap between Entity Framework, MongoDB, or any custom provider  
+— with no changes to your application or domain logic.
 
 ---
 
 ## 🧩 Packages
 
-| Package                                                                | Description                                      |
-| ---------------------------------------------------------------------- | ------------------------------------------------ |
-| [`RepositoryKit.Core`](./src/RepositoryKit.Core)                       | Interface contracts (IRepository, IQuery, IBulk) |
-| [`RepositoryKit.EntityFramework`](./src/RepositoryKit.EntityFramework) | EF Core implementation                           |
-| [`RepositoryKit.MongoDB`](./src/RepositoryKit.MongoDB)                 | MongoDB driver implementation                    |
-| [`RepositoryKit.Extensions`](./src/RepositoryKit.Extensions)           | LINQ extensions (pagination, sorting, chunking)  |
+| Package                         | Purpose                                             |
+| ------------------------------- | --------------------------------------------------- |
+| `RepositoryKit.Core`            | Provider-agnostic interfaces and abstractions       |
+| `RepositoryKit.EntityFramework` | Plug-and-play EF Core implementation                |
+| `RepositoryKit.MongoDb`         | Plug-and-play MongoDB implementation                |
+| `RepositoryKit.Extensions`      | Handy LINQ/collection extensions for any repository |
 
 ---
 
-## ✨ Highlights
+## 🛠️ Why RepositoryKit?
 
-- ✅ Plug-and-play support for multiple ORMs
-- 🧪 Fully mockable interfaces for unit testing
-- 🧱 Interface segregation: CRUD, Query, Bulk separated cleanly
-- ⚡ Minimal dependencies, blazing fast startup
-
----
-
-## 🔧 Install
-
-Install only the pieces you need:
-
-```bash
-# For EF Core:
-dotnet add package RepositoryKit.EntityFramework
-
-# For MongoDB:
-dotnet add package RepositoryKit.MongoDB
-
-# For base contracts (automatically included):
-dotnet add package RepositoryKit.Core
-```
+- **Write once, use anywhere:** Keep your app logic independent from data provider details.
+- **Easily mockable & testable:** Interfaces are designed for clean dependency injection.
+- **Flexible:** Add new providers or swap databases with minimal refactoring.
+- **Production-ready patterns:** Follow real-world repository/unit-of-work design.
+- **Extensible:** Use with your own custom repositories or add domain logic.
 
 ---
 
-## 🧰 Example Usage
+## 📦 Quick Example
+
+### Register in your DI container (e.g., Entity Framework):
 
 ```csharp
-// Register for EF
-services.AddScoped(typeof(IRepository<,>), typeof(EFRepository<,>));
+builder.Services.AddDbContext<AppDbContext>(options => ...);
+builder.Services.AddScoped<IUnitOfWork<AppDbContext>, EfUnitOfWork<AppDbContext>>();
+builder.Services.AddSingleton<IUnitOfWorkManager, EfUnitOfWorkManager>();
+```
 
-// Or register Mongo
-services.AddScoped(typeof(IRepository<,>), typeof(MongoRepository<,>));
+## Use in your minimal API or service:
 
-// Inject & use
-public class ProductService
+```csharp
+app.MapGet("/products", async (IUnitOfWork<AppDbContext> uow) =>
 {
-    private readonly IRepository<Product, Guid> _repo;
-
-    public ProductService(IRepository<Product, Guid> repo)
-    {
-        _repo = repo;
-    }
-
-    public Task<Product?> Get(Guid id) => _repo.GetByIdAsync(id);
-}
+    var repo = uow.GetRepository<Product>();
+    var products = await repo.GetAllAsync();
+    return Results.Ok(products);
+});
 ```
 
----
+## 📚 Providers
 
-## 📦 NuGet
-
-- 📦 [RepositoryKit.Core](https://www.nuget.org/packages/RepositoryKit.Core)
-- 📦 [RepositoryKit.EntityFramework](https://www.nuget.org/packages/RepositoryKit.EntityFramework)
-- 📦 [RepositoryKit.MongoDB](https://www.nuget.org/packages/RepositoryKit.MongoDB)
-- 📦 [RepositoryKit.Extensions](https://www.nuget.org/packages/RepositoryKit.Extensions)
-
----
-
-## 🧪 Testing
-
-All interfaces can be mocked in unit tests. Full test suite is available under `tests/`.
-
-```bash
-dotnet test
-```
-
----
+- EF Core: [RepositoryKit.EntityFramework](https://github.com/taberkkaya/RepositoryKit/tree/master/src/RepositoryKit.EntityFramework)
+- MongoDB: [RepositoryKit.MongoDb](https://github.com/taberkkaya/RepositoryKit/tree/master/src/RepositoryKit.MongoDB)
+- Extensions: [RepositoryKit.Extensions](https://github.com/taberkkaya/RepositoryKit/tree/master/src/RepositoryKit.Extensions) for LINQ magic (Shuffle, SafeDistinct, GroupBySelect...)
 
 ## 📜 License
 
 MIT © [Ataberk Kaya](https://github.com/taberkkaya)
+
+## 🤝 Dependencies
+
+- .NET 8+
+- Minimal dependencies, designed for plug-and-play usage
+
+---
+
+📎 `RepositoryKit` is an open, modular infrastructure for all .NET repository scenarios.

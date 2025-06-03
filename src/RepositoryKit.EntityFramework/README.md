@@ -11,66 +11,109 @@
 
 ## 📦 Package
 
-Provides an out-of-the-box repository implementation using **Entity Framework Core**. Supports `DbContext`, `DbSet<T>` and leverages EF Core’s change tracking.
+This package contains the **Entity Framework Core** based implementation of the RepositoryKit abstractions.
 
 ---
 
-## ✨ Features
+## ✅ Implementations
 
-- `EFRepository<T, TKey>` implements all core contracts
-- `AsNoTracking` support for queries
-- Async support for all operations
-- Supports pagination, sorting, and filtered queries
+| Class                                    | Purpose                                    |
+| ---------------------------------------- | ------------------------------------------ |
+| `EfReadOnlyRepository<TEntity,TContext>` | Read-only LINQ queries on your entities    |
+| `EfRepository<TEntity, TContext>`        | Full-featured CRUD repository for EF Core  |
+| `EfUnitOfWork<TContext>`                 | Unit of Work for a single DbContext        |
+| `EfUnitOfWorkManager`                    | Multi-context Unit of Work resolver via DI |
 
 ---
 
-## 🧰 Usage
+## 🚀 Usage Examples
+
+### **1. Register in DI (Startup or Program.cs)**
 
 ```csharp
-services.AddDbContext<AppDbContext>();
+// Register DbContext and RepositoryKit services
+builder.Services.AddDbContext<SampleDbContext>(opt => opt.UseInMemoryDatabase("SampleDb"));
+builder.Services.AddScoped(typeof(IUnitOfWork<>), typeof(EfUnitOfWork<>));
+builder.Services.AddSingleton<IUnitOfWorkManager, EfUnitOfWorkManager>();
 
-// Register EFRepository with open generics (recommended)
-services.AddScoped(typeof(IRepository<,>), typeof(EFRepository<,>));
-
-// Optional: You can still register specific types manually if needed
-// services.AddScoped<IRepository<Product, Guid>>(provider =>
-//     new EFRepository<Product, Guid>(provider.GetRequiredService<AppDbContext>()));
+// Custom repository registration (interface-based)
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 ```
 
----
-
-## 🔍 Example
+### **2. Basic Repository & UnitOfWork Usage (Minimal API)**
 
 ```csharp
-// Define your entity
-public class Product
+app.MapPost("/products", async (IUnitOfWork<SampleDbContext> uow, Product product) =>
 {
-    public Guid Id { get; set; }
-    public string Name { get; set; }
-    public decimal Price { get; set; }
-}
-
-// Inject the repository (e.g. in controller or service)
-private readonly IRepository<Product, Guid> _repo;
-
-public ProductService(IRepository<Product, Guid> repo)
-{
-    _repo = repo;
-}
-
-// Use it
-var product = await _repo.GetByIdAsync(id);
-var expensive = await _repo.FindAsync(p => p.Price > 100, tracking: false);
+    var repo = uow.GetRepository<Product>();
+    await repo.AddAsync(product);
+    await uow.SaveChangesAsync();
+    return Results.Created($"/products/{product.Id}", product);
+});
 ```
 
----
+### **3. Custom Repository Inheritance & Usage**
 
-## 📁 Requirements
+Custom Repository Interface and Implementation
 
-- Microsoft.EntityFrameworkCore
-- Compatible with .NET 9+
+```csharp
+public interface IProductRepository : IRepository<Product>
+{
+    Task<List<Product>> GetExpensiveProductsAsync(decimal minPrice);
+}
 
----
+public class ProductRepository : EfRepository<Product, SampleDbContext>, IProductRepository
+{
+    public ProductRepository(SampleDbContext context) : base(context) { }
+
+    public async Task<List<Product>> GetExpensiveProductsAsync(decimal minPrice)
+    {
+        return await _dbSet.Where(p => p.Price > minPrice).ToListAsync();
+    }
+}
+```
+
+#### Endpoint Usage
+
+```csharp
+app.MapGet("/products/expensive", async (IProductRepository repo, decimal minPrice) =>
+{
+    var expensive = await repo.GetExpensiveProductsAsync(minPrice);
+    return Results.Ok(expensive);
+});
+```
+
+### **4. Multiple Contexts with IUnitOfWorkManager**
+
+```csharp
+app.MapGet("/multi-context-demo", (IUnitOfWorkManager uowManager) =>
+{
+    var uow = uowManager.GetUnitOfWork<SampleDbContext>();
+    var repo = uow.GetRepository<Product>();
+    // Use repo as needed...
+});
+```
+
+## 🚨 Exception Handling
+
+All repository and unit of work operations wrap provider or database exceptions with the standard `RepositoryException`:`
+
+```csharp
+try
+{
+    await repository.AddAsync(product);
+    await unitOfWork.SaveChangesAsync();
+}
+catch (RepositoryException ex) when (ex.ErrorType == RepositoryErrorType.Add)
+{
+    // Handle or log rich error info
+}
+```
+
+## 🤝 Dependencies
+
+- [RepositoryKit.Core](https://github.com/taberkkaya/RepositoryKit/tree/master/src/RepositoryKit.Core)
+- Microsoft.EntityFrameworkCore (as implementation dependency)
 
 ## 📜 License
 
@@ -78,4 +121,4 @@ MIT © [Ataberk Kaya](https://github.com/taberkkaya)
 
 ---
 
-> 📎 This package depends on `RepositoryKit.Core
+📎 This package is the official EF Core provider for `RepositoryKit`

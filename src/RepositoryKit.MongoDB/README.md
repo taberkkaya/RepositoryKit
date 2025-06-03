@@ -1,9 +1,9 @@
 <div align="center">
   <img src="logo-64x64.png" width="120" alt="RepositoryKit logo" />
 
-# RepositoryKit.MongoDB
+# RepositoryKit.MongoDb
 
-**MongoDB Driver Implementation for RepositoryKit**
+**MongoDB Implementation for RepositoryKit**
 
 </div>
 
@@ -11,75 +11,104 @@
 
 ## 📦 Package
 
-Provides a repository implementation using **MongoDB.Driver**. It supports flexible querying and follows the same interface contract as EF version.
+This package provides the **MongoDB** implementation of RepositoryKit’s abstractions.
+
+It enables consistent, testable, and flexible repository patterns for MongoDB projects —  
+without unnecessary UnitOfWork or transaction layers.
 
 ---
 
-## ✨ Features
+## ✅ Implementations
 
-- `MongoRepository<T, TKey>` implements all core contracts
-- Async-first design
-- Supports filtering, sorting, and paging
-- Clean integration with MongoDB collections
+| Class                                        | Purpose                                   |
+| -------------------------------------------- | ----------------------------------------- |
+| `MongoReadOnlyRepository<TEntity, TContext>` | Read-only LINQ-style queries for MongoDB  |
+| `MongoRepository<TEntity, TContext>`         | Full-featured CRUD repository for MongoDB |
 
 ---
 
-## 🧰 Usage
+## 🚀 Usage Examples
+
+### **1. Register in DI (Startup or Program.cs)**
 
 ```csharp
-services.Configure<MongoDbOptions>(Configuration.GetSection("MongoDb"));
-services.AddSingleton<IMongoClient>(sp =>
-{
-    var options = sp.GetRequiredService<IOptions<MongoDbOptions>>().Value;
-    return new MongoClient(options.ConnectionString);
-});
-services.AddScoped<IMongoDatabase>(sp =>
-{
-    var options = sp.GetRequiredService<IOptions<MongoDbOptions>>().Value;
-    return sp.GetRequiredService<IMongoClient>().GetDatabase(options.Database);
-});
+builder.Services.AddSingleton<IMongoClient>(_ => new MongoClient("mongodb://localhost:27017"));
+builder.Services.AddScoped<IMongoDatabase>(sp =>
+    sp.GetRequiredService<IMongoClient>().GetDatabase("SampleDb"));
 
-services.AddScoped(typeof(IRepository<,>), typeof(MongoRepository<,>));
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 ```
 
----
-
-## 🔍 Example
+### **2. Basic Repository Usage (Minimal API)**
 
 ```csharp
-// appsettings.json
-"MongoDb": {
-  "ConnectionString": "mongodb://localhost:27017",
-  "Database": "RepositoryKitDb"
-}
-
-// Define your entity
-public class Product
+app.MapPost("/products", async (IProductRepository repo, Product product) =>
 {
-    public Guid Id { get; set; }
-    public string Name { get; set; }
-}
-
-// Injected service
-private readonly IRepository<Product, Guid> _repo;
-
-public ProductService(IRepository<Product, Guid> repo)
-{
-    _repo = repo;
-}
-
-// Usage
-await _repo.AddAsync(new Product { Id = Guid.NewGuid(), Name = "Pen" });
+    await repo.AddAsync(product);
+    return Results.Created($"/products/{product.Id}", product);
+});
 ```
 
----
+### **3. Custom Repository Inheritance & Usage**
 
-## 📁 Requirements
+#### Custom Repository Interface and Implementation
 
-- MongoDB.Driver
-- Microsoft.Extensions.Options
+```csharp
+public interface IProductRepository : IRepository<Product>
+{
+    Task<List<Product>> GetExpensiveProductsAsync(decimal minPrice);
+}
 
----
+public class ProductRepository : MongoRepository<Product, IMongoDatabase>, IProductRepository
+{
+    public ProductRepository(IMongoDatabase db) : base(db) { }
+
+    public async Task<List<Product>> GetExpensiveProductsAsync(decimal minPrice)
+    {
+        return await _collection.Find(p => p.Price > minPrice).ToListAsync();
+    }
+}
+```
+
+#### Endpoint Usage
+
+```csharp
+app.MapGet("/products/expensive", async (IProductRepository repo, decimal minPrice) =>
+{
+    var expensive = await repo.GetExpensiveProductsAsync(minPrice);
+    return Results.Ok(expensive);
+});
+```
+
+### **4. All RepositoryKit.Extensions Can Be Used**
+
+All LINQ-based [RepositoryKit.Extensions](https://github.com/taberkkaya/RepositoryKit/tree/master/src/RepositoryKit.Extensions) (like `Shuffle`, `FirstOrNone`, `GroupBySelect`, `SafeDistinct`, etc.)
+can be used directly in your MongoDB sample:
+
+```csharp
+var products = await repo.GetAllAsync();
+var shuffled = products.Shuffle().ToList();
+```
+
+## 🚨 Exception Handling
+
+Repository operations wrap errors with the standard `RepositoryException` from `RepositoryKit.Core`:
+
+```csharp
+try
+{
+    await repo.AddAsync(product);
+}
+catch (RepositoryException ex)
+{
+    // Handle or log error info
+}
+```
+
+## 🤝 Dependencies
+
+- [RepositoryKit.Core](https://github.com/taberkkaya/RepositoryKit/tree/master/src/RepositoryKit.Core)
+- MongoDB.Driver (official MongoDB driver)
 
 ## 📜 License
 
@@ -87,4 +116,4 @@ MIT © [Ataberk Kaya](https://github.com/taberkkaya)
 
 ---
 
-> 📎 This package depends on `RepositoryKit.Core`
+📎 This package is the official MongoDB provider for `RepositoryKit`.

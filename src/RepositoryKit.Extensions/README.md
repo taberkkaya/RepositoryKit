@@ -3,7 +3,7 @@
 
 # RepositoryKit.Extensions
 
-**Helper Extensions for LINQ (IQueryable & IEnumerable)**
+**Reusable LINQ and Collection Extensions for RepositoryKit and .NET**
 
 </div>
 
@@ -11,57 +11,48 @@
 
 ## 📦 Package
 
-This package provides utility extensions for `IQueryable` and `IEnumerable` to simplify operations like pagination, sorting, chunking, and enumeration.
+This package provides **provider-agnostic extension methods** for LINQ queries and collections.
+
+- Designed for use with any data provider (EF, Mongo, Dapper, InMemory, etc.)
+- No dependencies except for .NET Standard LINQ
+- All methods are static, lightweight, and high performance
 
 ---
+
+## ✅ Extensions
+
+| File                       | Highlights & Example Methods                              |
+| -------------------------- | --------------------------------------------------------- |
+| `IQueryableExtensions.cs`  | `ToPagedList`, `ApplySorting`, `DynamicWhere`, `SelectAs` |
+| `IEnumerableExtensions.cs` | `ForEach`, `SafeDistinct`, `Shuffle`, `GroupBySelect`     |
+
+---
+
+## 📁 Typical Usage
+
+Chain extension methods in your query and projection flow:
+
+```csharp
+var paged = db.Products.Query().ApplySorting("Name").ToPagedList(page: 1, pageSize: 10);
+
+var summaries = paged.SelectAs(x => new ProductSummaryDto
+{
+    Id = x.Id,
+    Name = x.Name
+});
+
+paged.ForEach(product => Console.WriteLine(product.Name));
+```
 
 ## ✨ Features
 
-- `Paginate()` — extension for paging `IQueryable`
-- `OrderByField()` — simplified dynamic ordering
-- `Chunk()` — split `IEnumerable` into subgroups
-- `ForEach()` — loop over elements with action
+- Pure extension methods for `IQueryable<T>` and `IEnumerable<T>`
+- Plug-and-play usage: no extra setup required
+- All methods work on any provider or in-memory source
 
----
+## 🤝 Dependencies
 
-## 🧰 Usage
-
-```csharp
-using RepositoryKit.Extensions;
-
-var paged = queryableProducts.Paginate(1, 10);
-var sorted = queryableProducts.OrderByField(p => p.Name);
-
-var chunked = listOfItems.Chunk(50);
-chunked.ForEach(chunk => Console.WriteLine(chunk.Count()));
-```
-
----
-
-## 📁 Included Extensions
-
-### `IQueryableExtensions`
-
-```csharp
-query.Paginate(pageIndex: 2, pageSize: 10);
-query.OrderByField(x => x.CreatedDate, descending: true);
-```
-
-### `IEnumerableExtensions`
-
-```csharp
-collection.Chunk(100);
-collection.ForEach(x => Console.WriteLine(x));
-```
-
----
-
-## 📁 Requirements
-
-- .NET 9+
-- No external dependencies
-
----
+- No external dependencies (just .NET Standard LINQ)
 
 ## 📜 License
 
@@ -69,4 +60,4 @@ MIT © [Ataberk Kaya](https://github.com/taberkkaya)
 
 ---
 
-> 📎 This package is standalone and does not depend on other RepositoryKit modules
+📎 Designed to be used with `RepositoryKit`, but useful in any .NET project

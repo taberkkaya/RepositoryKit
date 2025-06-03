@@ -1,121 +1,95 @@
 <div align="center">
-  <img src="assets/logo-1250x1250.png" width="120" alt="RepositoryKit logo" />
-  
-  # RepositoryKit
-  **A Modular & Extendable Repository Pattern Implementation for .NET**
+  <img src="logo-64x64.png" width="128" alt="RepositoryKit logo" />
+  <h1>RepositoryKit</h1>
+  <p>
+    <strong>Provider-agnostic, production-ready Repository & UnitOfWork infrastructure for modern .NET.</strong><br/>
+    Clean. Modular. Mockable. <br/>
+    <a href="https://github.com/taberkkaya/RepositoryKit">GitHub</a> •
+    <a href="https://www.nuget.org/packages/RepositoryKit.Core">NuGet</a>
+  </p>
 </div>
 
 ---
 
-## ✨ Overview
+## 🌍 What is RepositoryKit?
 
-**RepositoryKit** is a lightweight and extensible repository abstraction library for .NET projects. It encapsulates common data access operations and allows seamless integration with multiple data providers like Entity Framework and MongoDB.
+RepositoryKit is a **modular, unified infrastructure** for .NET projects  
+that provides a clean and extensible Repository & UnitOfWork abstraction.
+
+- **EF Core, MongoDB and more:** Swap your database backend with zero changes to your business logic.
+- **Mockable & testable:** Designed from scratch for modern dependency injection and testing.
+- **Plug & play:** Use only what you need—each provider is its own NuGet package.
 
 ---
 
 ## 📦 Packages
 
-| Package                         | Description                               |
-| ------------------------------- | ----------------------------------------- |
-| `RepositoryKit.Core`            | Interfaces and base contracts             |
-| `RepositoryKit.EntityFramework` | EF Core implementation                    |
-| `RepositoryKit.MongoDB`         | MongoDB driver implementation             |
-| `RepositoryKit.Extensions`      | Helper extensions for IQueryable and more |
+| Package                                                                | Description                               |
+| ---------------------------------------------------------------------- | ----------------------------------------- |
+| [`RepositoryKit.Core`](./src/RepositoryKit.Core)                       | Provider-agnostic abstractions/interfaces |
+| [`RepositoryKit.EntityFramework`](./src/RepositoryKit.EntityFramework) | Entity Framework Core implementation      |
+| [`RepositoryKit.MongoDb`](./src/RepositoryKit.MongoDb)                 | MongoDB implementation                    |
+| [`RepositoryKit.Extensions`](./src/RepositoryKit.Extensions)           | Useful LINQ/collection extensions         |
 
 ---
 
-## 🛠️ Installation
+## 🚀 Quickstart
 
-You can install each package separately:
+### 1. Add a provider package:
 
-```bash
-# Core interfaces
-Install-Package RepositoryKit.Core
-
-# EF implementation
-Install-Package RepositoryKit.EntityFramework
-
-# MongoDB implementation
-Install-Package RepositoryKit.MongoDB
+```sh
+dotnet add package RepositoryKit.EntityFramework
+# or
+dotnet add package RepositoryKit.MongoDb
 ```
 
----
-
-## 🚀 Getting Started
+### **2. Register with DI (EF example):**
 
 ```csharp
-// Register the desired implementation
-services.AddScoped<IRepository<Product, Guid>, EFRepository<Product, Guid>>();
+builder.Services.AddDbContext<AppDbContext>(...);
+builder.Services.AddScoped<IUnitOfWork<AppDbContext>, EfUnitOfWork<AppDbContext>>();
+builder.Services.AddSingleton<IUnitOfWorkManager, EfUnitOfWorkManager>();
 ```
 
----
-
-## 🧪 Unit Testing
-
-Mockable interfaces make testing your repository-based logic clean and simple:
+### **3. Use in your app (Minimal API example):**
 
 ```csharp
-var mock = new Mock<IRepository<Product, Guid>>();
-mock.Setup(r => r.GetByIdAsync(id)).ReturnsAsync(product);
+app.MapGet("/products", async (IUnitOfWork<AppDbContext> uow) =>
+{
+    var repo = uow.GetRepository<Product>();
+    var products = await repo.GetAllAsync();
+    return Results.Ok(products);
+});
 ```
 
-To run the unit tests:
+### **4. Extensions for any collection/repository:**
 
-```bash
-dotnet test tests/RepositoryKit.Tests
+```csharp
+var distinct = products.SafeDistinct(p => p.CategoryId).ToList();
+var firstOrNone = products.AsQueryable().FirstOrNone();
 ```
 
----
+## 🧩 Why RepositoryKit?
 
-## 📁 Folder Structure
+- **Provider-agnostic:** No more vendor lock-in
+- **Test-friendly:** Mock everything, everywhere
+- **Production patterns:** Real-world repository & UoW
+- **Minimal boilerplate:** Focus on your business logic
 
-```
-src/
-├── RepositoryKit                # Umbrella entry (optional)
-├── RepositoryKit.Core           # Interface contracts
-├── RepositoryKit.EntityFramework
-├── RepositoryKit.MongoDB
-├── RepositoryKit.Extensions
-samples/
-├── EF.Sample                    # EFCore demo
-├── MongoDB.Sample               # Mongo demo
-tests/
-└── RepositoryKit.Tests          # Unit tests
-```
+## 📚 Full Documentation
 
----
+See individual package READMEs for full details:
 
-## 🧱 Architecture
+- [Core](https://github.com/taberkkaya/RepositoryKit/blob/master/src/RepositoryKit.Core/README.md)
+- [EntityFramework](https://github.com/taberkkaya/RepositoryKit/blob/master/src/RepositoryKit.EntityFramework/README.md)
+- [MongoDb](https://github.com/taberkkaya/RepositoryKit/blob/master/src/RepositoryKit.MongoDB/README.md)
+- [Extensions](https://github.com/taberkkaya/RepositoryKit/tree/master/src/RepositoryKit.Extensions)
 
-- `IRepository<T, TKey>` — CRUD operations
-- `IRepositoryQuery<T, TKey>` — advanced query (paging, sorting)
-- `IRepositoryBulk<T>` — batch operations
+## 🤝 Contributing
 
-All implementations follow **SOLID principles** and are unit-test friendly.
-
----
-
-## 💡 Motivation
-
-Writing repository logic repeatedly? RepositoryKit offers:
-
-- 🔁 Reusability across projects
-- 🧪 Easy testability
-- 🧩 Plug-n-play data provider support
-- 🧼 Clean and minimal API
-
----
+PRs, issues, and suggestions are all welcome! <br>
+Feel free to fork, star, or use for your next side project.
 
 ## 📜 License
 
 MIT © [Ataberk Kaya](https://github.com/taberkkaya)
-
----
-
-> 📎 For detailed package-specific README files, see each subfolder under `/src`
-
----
-
-<div align="center">
-Made with ❤️ by [@taberkkaya](https://github.com/taberkkaya)
-</div>

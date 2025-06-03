@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\RepositoryKit.EntityFramework\RepositoryKit.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\src\RepositoryKit.Extensions\RepositoryKit.Extensions.csproj" />
   </ItemGroup>
 
 </Project>
