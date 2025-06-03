@@ -7,9 +7,9 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>RepositoryKit.EntityFramework</PackageId>
     <Title>RepositoryKit.EntityFramework</Title>
-    <Version>9.0.2</Version>
-    <AssemblyVersion>9.0.2</AssemblyVersion>
-    <FileVersion>9.0.1</FileVersion>
+    <Version>9.0.3</Version>
+    <AssemblyVersion>9.0.3</AssemblyVersion>
+    <FileVersion>9.0.3</FileVersion>
     <Description>Entity Framework Core implementation of RepositoryKit. Implements IRepository, IRepositoryQuery and IRepositoryBulk using DbContext and DbSet.</Description>
     <PackageReleaseNotes>Initial stable version for EF Core repositories using .NET 9 compatible structure.</PackageReleaseNotes>
     <PackageTags>repository efcore dbcontext abstraction dotnet</PackageTags>

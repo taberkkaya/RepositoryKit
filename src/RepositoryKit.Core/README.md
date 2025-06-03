@@ -70,7 +70,8 @@ mock.Setup(repo => repo.GetAllAsync()).ReturnsAsync(productsList);
 
 ## 🤝 Dependencies
 
-- No dependencies
+- Microsoft.EntityFrameworkCore (for `DbContext`-based contracts)
+- No other dependencies
 - Designed to be stable, lightweight, and fully mockable
 
 ## 📜 License

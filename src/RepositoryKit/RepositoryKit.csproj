@@ -28,7 +28,7 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>RepositoryKit</PackageId>
-    <Version>9.0.2</Version>
+    <Version>9.0.3</Version>
     <Authors>ataberk</Authors>
     <Company>ataberk</Company>
     <Product>RepositoryKit</Product>
@@ -40,8 +40,8 @@
     <PackageIcon>logo-64x64.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/taberkkaya/RepositoryKit</RepositoryUrl>
-    <FileVersion>9.0.2</FileVersion>
-    <AssemblyVersion>9.0.2</AssemblyVersion>
+    <FileVersion>9.0.3</FileVersion>
+    <AssemblyVersion>9.0.3</AssemblyVersion>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <Title>RepositoryKit</Title>
   </PropertyGroup>
