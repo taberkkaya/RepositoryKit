@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>RepositoryKit.EntityFramework</PackageId>
     <Title>RepositoryKit.EntityFramework</Title>
-    <Version>9.0.3</Version>
+    <Version>9.0.4</Version>
     <AssemblyVersion>9.0.3</AssemblyVersion>
     <FileVersion>9.0.3</FileVersion>
     <Description>Entity Framework Core implementation of RepositoryKit. Implements IRepository, IRepositoryQuery and IRepositoryBulk using DbContext and DbSet.</Description>

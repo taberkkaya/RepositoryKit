@@ -1,6 +1,4 @@
-﻿// File: src/RepositoryKit.EntityFramework/Implementations/EfUnitOfWork.cs
-
-namespace RepositoryKit.EntityFramework.Implementations;
+﻿namespace RepositoryKit.EntityFramework.Implementations;
 
 using Microsoft.EntityFrameworkCore;
 using RepositoryKit.Core.Exceptions;
@@ -14,7 +12,8 @@ using System.Threading.Tasks;
 /// Entity Framework Core implementation of <see cref="IUnitOfWork{TContext}"/> for a given DbContext type.
 /// </summary>
 /// <typeparam name="TContext">DbContext type.</typeparam>
-public class EfUnitOfWork<TContext> : IUnitOfWork<TContext> where TContext : DbContext
+public class EfUnitOfWork<TContext> : IUnitOfWork<TContext>
+    where TContext : DbContext
 {
     private readonly TContext _context;
     private readonly ConcurrentDictionary<Type, object> _repositories = new();
@@ -62,6 +61,35 @@ public class EfUnitOfWork<TContext> : IUnitOfWork<TContext> where TContext : DbC
                 RepositoryErrorType.SaveChanges,
                 typeof(TContext),
                 nameof(SaveChangesAsync),
+                ex
+            );
+        }
+    }
+
+    /// <inheritdoc />
+    public int SaveChanges()
+    {
+        try
+        {
+            return _context.SaveChanges();
+        }
+        catch (DbUpdateException ex)
+        {
+            throw new RepositoryException(
+                "A database update error occurred while saving changes.",
+                RepositoryErrorType.SaveChanges,
+                typeof(TContext),
+                nameof(SaveChanges),
+                ex
+            );
+        }
+        catch (Exception ex)
+        {
+            throw new RepositoryException(
+                "An error occurred while saving changes.",
+                RepositoryErrorType.SaveChanges,
+                typeof(TContext),
+                nameof(SaveChanges),
                 ex
             );
         }

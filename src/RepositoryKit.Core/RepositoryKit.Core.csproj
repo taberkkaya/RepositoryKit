@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>RepositoryKit.Core</PackageId>
     <Title>RepositoryKit.Core</Title>
-    <Version>9.0.3</Version>
+    <Version>9.0.5</Version>
     <Authors>ataberk</Authors>
     <Company>ataberk</Company>
     <Product>RepositoryKit.Core</Product>
